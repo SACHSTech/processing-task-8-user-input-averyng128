@@ -1,36 +1,92 @@
+/**
+ * Description: Demonstrate learning objectives involving mouse and keyboard inputs
+ * @Author: A. Ng
+ * 
+ */
+
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
 	
-	
-  /**
-   * Called once at the beginning of execution, put your size all in this method
-   */
+  float fltR = 0;
+  float fltG = 255;
+  float fltB = 0;
+  String strText = "";
+  int intRectX = 0;
+	int intRectY = 0;
+
   public void settings() {
-	// put your size call here
     size(400, 400);
   }
 
-  /** 
-   * Called once at the beginning of execution.  Add initial set up
-   * values here i.e background, stroke, fill etc.
-   */
+
   public void setup() {
-    background(210, 255, 173);
+    background(30);
   }
 
-  /**
-   * Called repeatedly, anything drawn to the screen goes here
-   */
+
   public void draw() {
-	  
-	// sample code, delete this stuff
-    stroke(128);
-    line(150, 25, 270, 350);  
 
-    stroke(255);
-    line(50, 125, 70, 50);  
+    //mouse input functions colour changing of shapes and text
+    fill(fltR, fltG, fltB);
+    rect(intRectX, intRectY, 75, 75);
+    // Key variable
+    textSize(200);
+    text(key, 200, 200);
+    //Keyboard input
+    textSize(10);
+    text(strText, 25, 150);
+
+    //mouse pressed variables
+    if (mousePressed){
+      stroke(0);
+      // mouseX and mouseY variables
+      translate(mouseX, mouseY);
+
+      // draw flowers when mouse is pressed
+      for (int i = 0; i <= 8; i += 1) {
+        rotate(radians(45));
+        fill(255, 255, 224);
+        ellipse(0, 0, width/100, height/20);  
+      }
+        fill(0, 0, 0);
+        ellipse(0, 0, width/30, height/30);
+      }    
+    // keyPressed variable
+    if(keyPressed){
+      if (keyCode == UP) {
+        intRectX += 1;
+        intRectY += 1;
+    } 
   }
-  
-  // define other methods down here.
+    
+  }
+
+  //mouse input functions
+  public void mousePressed() {
+    fltR = 255;
+    fltG = 0;
+    fltB = 0;
+  }
+  //mouse input functions
+  public void mouseReleased() {
+    fltR = 255;
+    fltG = 165;
+    fltB = 0;
+  }
+  //mouse input functions
+  // Combining input variables and event functions
+  public void mouseClicked() {
+    fill(255);
+    ellipse(0, 0, 75, 75);
+    
+    fltR = 0;
+    fltG = 0;
+    fltB = 255;
+  }
+  //keyboard input function
+  public void keyTyped() {
+    strText += key;
+  }
+
 }
